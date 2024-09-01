@@ -21,20 +21,13 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
-    - name: Generate gradlew and initialize Gradle if missing
-      run: |
-        if [ ! -f gradlew ]; then
-          gradle init --overwrite
-          gradle wrapper
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add gradlew gradlew.bat gradle/wrapper
-          git commit -m "Initialize Gradle project and add Gradle wrapper"
-          git push
-        fi
-
+    - name: Change directory to VirtualApp
+      working-directory: ./VirtualApp
+    
     - name: Grant execute permission for gradlew
       run: chmod +x ./gradlew
+      working-directory: ./VirtualApp
 
     - name: Build with Gradle
       run: ./gradlew build
+      working-directory: ./VirtualApp
