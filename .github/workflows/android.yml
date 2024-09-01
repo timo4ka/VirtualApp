@@ -21,21 +21,15 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
-    - name: Check for Gradle files
-      run: |
-        if [ ! -f build.gradle ] || [ ! -f settings.gradle ]; then
-          echo "Gradle configuration files are missing."
-          exit 1
-        fi
-
-    - name: Generate gradlew if missing
+    - name: Generate gradlew and initialize Gradle if missing
       run: |
         if [ ! -f gradlew ]; then
+          gradle init
           gradle wrapper
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add gradlew gradlew.bat gradle/wrapper
-          git commit -m "Add Gradle wrapper"
+          git add gradlew gradlew.bat gradle/wrapper build.gradle settings.gradle
+          git commit -m "Initialize Gradle project and add Gradle wrapper"
           git push
         fi
 
