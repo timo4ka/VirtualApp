@@ -24,7 +24,7 @@ jobs:
     - name: Generate gradlew and initialize Gradle if missing
       run: |
         if [ ! -f gradlew ]; then
-          gradle init
+          gradle init --overwrite
           gradle wrapper
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
