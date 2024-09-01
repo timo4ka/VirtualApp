@@ -28,7 +28,7 @@ jobs:
           gradle wrapper
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add gradlew gradlew.bat gradle/wrapper build.gradle settings.gradle
+          git add gradlew gradlew.bat gradle/wrapper
           git commit -m "Initialize Gradle project and add Gradle wrapper"
           git push
         fi
